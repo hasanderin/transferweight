@@ -5,17 +5,12 @@
     'category': 'Sales',
     'summary': 'Weight calculation and vehicle management for sales orders',
     'description': """
-        Transfer and Weight Management
-        =============================
+        Transfer and Weight Management Module
         
-        This module provides:
-        
-        * Weight calculation for sales order lines based on product weight
-        * Total weight calculation for sales orders
-        * Vehicle management with capacity tracking
-        * Vehicle assignment to sales orders
-        * Vehicle status tracking (available, in transit, completed)
-        * Capacity validation for vehicle assignments
+        This module provides weight calculation for sales order lines based on product weight,
+        total weight calculation for sales orders, vehicle management with capacity tracking,
+        vehicle assignment to sales orders, vehicle status tracking (available, in transit, completed),
+        and capacity validation for vehicle assignments.
     """,
     'author': 'Your Company',
     'website': 'https://www.yourcompany.com',
