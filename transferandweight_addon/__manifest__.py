@@ -9,6 +9,7 @@
         =============================
         
         This module provides:
+        
         * Weight calculation for sales order lines based on product weight
         * Total weight calculation for sales orders
         * Vehicle management with capacity tracking
