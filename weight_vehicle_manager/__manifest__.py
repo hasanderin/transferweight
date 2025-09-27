@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 {
-    'name': 'Transfer Weight Management v2',
+    'name': 'Weight & Vehicle Manager',
     'version': '1.0.0',
     'category': 'Sales',
     'summary': 'Weight calculation and vehicle management for sales orders',

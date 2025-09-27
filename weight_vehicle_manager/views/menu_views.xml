@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <!-- Main Menu -->
-    <menuitem id="menu_transfer_weight_root" 
-              name="Transfer &amp; Weight" 
+    <menuitem id="menu_weight_vehicle_root" 
+              name="Weight &amp; Vehicle" 
               sequence="100"/>
 
     <!-- Vehicle Management Menu -->
     <menuitem id="menu_vehicle_management" 
               name="Vehicle Management" 
-              parent="menu_transfer_weight_root" 
+              parent="menu_weight_vehicle_root" 
               sequence="10"/>
 
     <menuitem id="menu_vehicles" 
@@ -20,7 +20,7 @@
     <!-- Sales & Weight Menu -->
     <menuitem id="menu_sales_weight" 
               name="Sales &amp; Weight" 
-              parent="menu_transfer_weight_root" 
+              parent="menu_weight_vehicle_root" 
               sequence="20"/>
 
     <menuitem id="menu_weight_report" 
@@ -38,7 +38,7 @@
     <!-- Configuration Menu -->
     <menuitem id="menu_configuration" 
               name="Configuration" 
-              parent="menu_transfer_weight_root" 
+              parent="menu_weight_vehicle_root" 
               sequence="30"/>
 
     <menuitem id="menu_vehicle_config" 
