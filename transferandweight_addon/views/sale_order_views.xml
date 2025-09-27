@@ -115,38 +115,6 @@
         </field>
     </record>
 
-    <!-- Vehicle Assignment Wizard -->
-    <record id="view_vehicle_assignment_wizard" model="ir.ui.view">
-        <field name="name">vehicle.assignment.wizard.form</field>
-        <field name="model">transfer.vehicle</field>
-        <field name="arch" type="xml">
-            <form string="Select Vehicle">
-                <group>
-                    <field name="name" readonly="1"/>
-                    <field name="license_plate" readonly="1"/>
-                    <field name="max_capacity" readonly="1"/>
-                    <field name="current_weight" readonly="1"/>
-                    <field name="capacity_usage_percent" readonly="1" widget="progressbar"/>
-                    <field name="state" readonly="1" widget="badge"/>
-                </group>
-                <footer>
-                    <button string="Assign" class="btn-primary" type="object" name="action_assign_to_order"/>
-                    <button string="Cancel" class="btn-secondary" special="cancel"/>
-                </footer>
-            </form>
-        </field>
-    </record>
-
-    <!-- Vehicle Assignment Wizard Action -->
-    <record id="action_vehicle_assignment_wizard" model="ir.actions.act_window">
-        <field name="name">Select Vehicle</field>
-        <field name="res_model">transfer.vehicle</field>
-        <field name="view_mode">form</field>
-        <field name="view_id" ref="view_vehicle_assignment_wizard"/>
-        <field name="target">new</field>
-        <field name="context">{}</field>
-    </record>
-
     <!-- Weight Report View -->
     <record id="view_weight_report" model="ir.ui.view">
         <field name="name">weight.report.tree</field>

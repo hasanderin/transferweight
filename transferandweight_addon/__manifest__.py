@@ -4,14 +4,7 @@
     'version': '13.0.1.0.0',
     'category': 'Sales',
     'summary': 'Weight calculation and vehicle management for sales orders',
-    'description': """
-        Transfer and Weight Management Module
-        
-        This module provides weight calculation for sales order lines based on product weight,
-        total weight calculation for sales orders, vehicle management with capacity tracking,
-        vehicle assignment to sales orders, vehicle status tracking (available, in transit, completed),
-        and capacity validation for vehicle assignments.
-    """,
+    'description': 'Transfer and Weight Management Module for Odoo 13. Provides weight calculation for sales order lines, vehicle management with capacity tracking, and vehicle assignment to sales orders.',
     'author': 'Your Company',
     'website': 'https://www.yourcompany.com',
     'license': 'LGPL-3',
