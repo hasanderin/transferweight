@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Main Menu -->
+    <menuitem id="menu_transfer_weight_root" 
+              name="Transfer &amp; Weight" 
+              sequence="100"/>
+
+    <!-- Vehicle Management Menu -->
+    <menuitem id="menu_vehicle_management" 
+              name="Vehicle Management" 
+              parent="menu_transfer_weight_root" 
+              sequence="10"/>
+
+    <menuitem id="menu_vehicles" 
+              name="Vehicles" 
+              parent="menu_vehicle_management" 
+              action="action_vehicle" 
+              sequence="10"/>
+
+    <!-- Sales & Weight Menu -->
+    <menuitem id="menu_sales_weight" 
+              name="Sales &amp; Weight" 
+              parent="menu_transfer_weight_root" 
+              sequence="20"/>
+
+    <menuitem id="menu_weight_report" 
+              name="Weight Report" 
+              parent="menu_sales_weight" 
+              action="action_weight_report" 
+              sequence="10"/>
+
+    <menuitem id="menu_orders_with_vehicles" 
+              name="Orders with Vehicles" 
+              parent="menu_sales_weight" 
+              action="%(action_sale_order_vehicle_orders)d" 
+              sequence="20"/>
+
+    <!-- Configuration Menu -->
+    <menuitem id="menu_configuration" 
+              name="Configuration" 
+              parent="menu_transfer_weight_root" 
+              sequence="30"/>
+
+    <menuitem id="menu_vehicle_config" 
+              name="Vehicle Settings" 
+              parent="menu_configuration" 
+              action="action_vehicle" 
+              sequence="10"/>
+
+</odoo>

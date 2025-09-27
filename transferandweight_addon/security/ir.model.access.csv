@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_transfer_vehicle_user,transfer.vehicle.user,model_transfer_vehicle,base.group_user,1,1,1,0
+access_transfer_vehicle_manager,transfer.vehicle.manager,model_transfer_vehicle,base.group_system,1,1,1,1
+access_sale_order_weight_user,sale.order.weight.user,model_sale_order,base.group_user,1,1,0,0
+access_sale_order_weight_manager,sale.order.weight.manager,model_sale_order,base.group_system,1,1,1,1
+access_sale_order_line_weight_user,sale.order.line.weight.user,model_sale_order_line,base.group_user,1,1,0,0
+access_sale_order_line_weight_manager,sale.order.line.weight.manager,model_sale_order_line,base.group_system,1,1,1,1

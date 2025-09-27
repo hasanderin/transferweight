@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Sale Order Form View Extension -->
+    <record id="view_order_form_weight" model="ir.ui.view">
+        <field name="name">sale.order.form.weight</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <!-- Add weight information to header -->
+            <xpath expr="//header" position="inside">
+                <button name="action_assign_vehicle" string="Assign Vehicle" type="object" 
+                        class="btn-primary" 
+                        invisible="state not in ['sale', 'done'] or vehicle_id != False"/>
+                <button name="action_unassign_vehicle" string="Unassign Vehicle" type="object" 
+                        class="btn-secondary" 
+                        invisible="state not in ['sale', 'done'] or vehicle_id == False"/>
+                <button name="action_mark_delivered" string="Mark Delivered" type="object" 
+                        class="btn-success" 
+                        invisible="state not in ['sale', 'done'] or vehicle_id == False or is_delivered == True"/>
+            </xpath>
+            
+            <!-- Add weight and vehicle information after partner -->
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <group name="weight_info" string="Weight &amp; Vehicle Information">
+                    <group>
+                        <field name="total_weight" readonly="1"/>
+                        <field name="vehicle_id" options="{'no_create': True}"/>
+                    </group>
+                    <group invisible="vehicle_id == False">
+                        <field name="vehicle_capacity" readonly="1"/>
+                        <field name="vehicle_current_weight" readonly="1"/>
+                        <field name="vehicle_capacity_usage" readonly="1" widget="progressbar"/>
+                        <field name="vehicle_state" readonly="1" widget="badge"/>
+                    </group>
+                </group>
+            </xpath>
+            
+            <!-- Add delivery information -->
+            <xpath expr="//field[@name='vehicle_state']" position="after">
+                <group name="delivery_info" string="Delivery Information" 
+                       invisible="vehicle_id == False">
+                    <group>
+                        <field name="is_delivered"/>
+                        <field name="delivery_date" readonly="1"/>
+                    </group>
+                </group>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Sale Order Line Form View Extension -->
+    <record id="view_order_line_form_weight" model="ir.ui.view">
+        <field name="name">sale.order.line.form.weight</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sale_order_line_form"/>
+        <field name="arch" type="xml">
+            <!-- Add weight fields after product -->
+            <xpath expr="//field[@name='product_id']" position="after">
+                <field name="product_weight" readonly="1"/>
+                <field name="line_weight" readonly="1"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Sale Order Tree View Extension -->
+    <record id="view_order_tree_weight" model="ir.ui.view">
+        <field name="name">sale.order.tree.weight</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add weight and vehicle columns -->
+            <xpath expr="//field[@name='amount_total']" position="after">
+                <field name="total_weight"/>
+                <field name="vehicle_id"/>
+                <field name="vehicle_state" widget="badge"/>
+                <field name="is_delivered" widget="boolean_toggle"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Sale Order Line Tree View Extension -->
+    <record id="view_order_line_tree_weight" model="ir.ui.view">
+        <field name="name">sale.order.line.tree.weight</field>
+        <field name="model">sale.order.line</field>
+        <field name="inherit_id" ref="sale.view_sale_order_line_tree"/>
+        <field name="arch" type="xml">
+            <!-- Add weight columns -->
+            <xpath expr="//field[@name='price_subtotal']" position="after">
+                <field name="product_weight"/>
+                <field name="line_weight"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Sale Order Search View Extension -->
+    <record id="view_order_search_weight" model="ir.ui.view">
+        <field name="name">sale.order.search.weight</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_sales_order_filter"/>
+        <field name="arch" type="xml">
+            <!-- Add vehicle filters -->
+            <xpath expr="//filter[@name='my_sale_orders_filter']" position="after">
+                <separator/>
+                <filter string="With Vehicle" name="with_vehicle" domain="[('vehicle_id', '!=', False)]"/>
+                <filter string="Without Vehicle" name="without_vehicle" domain="[('vehicle_id', '=', False)]"/>
+                <filter string="Delivered" name="delivered" domain="[('is_delivered', '=', True)]"/>
+                <filter string="Not Delivered" name="not_delivered" domain="[('is_delivered', '=', False), ('vehicle_id', '!=', False)]"/>
+            </xpath>
+            
+            <!-- Add vehicle grouping -->
+            <xpath expr="//group[@name='groupby']" position="inside">
+                <filter string="Vehicle" name="group_vehicle" context="{'group_by': 'vehicle_id'}"/>
+                <filter string="Delivery Status" name="group_delivery" context="{'group_by': 'is_delivered'}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- Vehicle Assignment Wizard -->
+    <record id="view_vehicle_assignment_wizard" model="ir.ui.view">
+        <field name="name">vehicle.assignment.wizard.form</field>
+        <field name="model">transfer.vehicle</field>
+        <field name="arch" type="xml">
+            <form string="Select Vehicle">
+                <group>
+                    <field name="name" readonly="1"/>
+                    <field name="license_plate" readonly="1"/>
+                    <field name="max_capacity" readonly="1"/>
+                    <field name="current_weight" readonly="1"/>
+                    <field name="capacity_usage_percent" readonly="1" widget="progressbar"/>
+                    <field name="state" readonly="1" widget="badge"/>
+                </group>
+                <footer>
+                    <button string="Assign" class="btn-primary" type="object" name="action_assign_to_order"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <!-- Vehicle Assignment Wizard Action -->
+    <record id="action_vehicle_assignment_wizard" model="ir.actions.act_window">
+        <field name="name">Select Vehicle</field>
+        <field name="res_model">transfer.vehicle</field>
+        <field name="view_mode">form</field>
+        <field name="view_id" ref="view_vehicle_assignment_wizard"/>
+        <field name="target">new</field>
+        <field name="context">{}</field>
+    </record>
+
+    <!-- Weight Report View -->
+    <record id="view_weight_report" model="ir.ui.view">
+        <field name="name">weight.report.tree</field>
+        <field name="model">sale.order</field>
+        <field name="arch" type="xml">
+            <tree string="Weight Report" decoration-success="is_delivered == True" 
+                  decoration-info="vehicle_id != False and is_delivered == False"
+                  decoration-warning="vehicle_id == False">
+                <field name="name"/>
+                <field name="partner_id"/>
+                <field name="date_order"/>
+                <field name="total_weight"/>
+                <field name="vehicle_id"/>
+                <field name="vehicle_capacity_usage" widget="progressbar"/>
+                <field name="vehicle_state" widget="badge"/>
+                <field name="is_delivered" widget="boolean_toggle"/>
+                <field name="delivery_date"/>
+                <field name="state"/>
+            </tree>
+        </field>
+    </record>
+
+    <!-- Weight Report Action -->
+    <record id="action_weight_report" model="ir.actions.act_window">
+        <field name="name">Weight Report</field>
+        <field name="res_model">sale.order</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_weight_report"/>
+        <field name="domain">[('state', 'in', ['sale', 'done'])]</field>
+        <field name="context">{}</field>
+    </record>
+
+</odoo>
