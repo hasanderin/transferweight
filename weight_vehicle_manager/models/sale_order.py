@@ -44,7 +44,6 @@ class SaleOrder(models.Model):
     vehicle_id = fields.Many2one(
         'transfer.vehicle',
         string='Assigned Vehicle',
-        tracking=True,
         help='Vehicle assigned to this order'
     )
     

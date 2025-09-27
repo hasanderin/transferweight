@@ -15,7 +15,7 @@
                             class="btn-primary" attrs="{'invisible': [('state', '!=', 'in_transit')]}"/>
                     <button name="action_set_maintenance" string="Set Maintenance" type="object" 
                             class="btn-secondary" attrs="{'invisible': [('state', '!=', 'available')]}"/>
-                    <field name="state" widget="statusbar" statusbar_visible="available,in_transit,completed"/>
+                    <field name="state" widget="statusbar"/>
                 </header>
                 <sheet>
                     <div class="oe_button_box" name="button_box">
@@ -34,7 +34,7 @@
                             <field name="license_plate"/>
                             <field name="max_capacity"/>
                             <field name="current_weight"/>
-                            <field name="capacity_usage_percent" widget="progressbar"/>
+                            <field name="capacity_usage_percent"/>
                         </group>
                         <group>
                             <field name="driver_name"/>
@@ -73,8 +73,8 @@
                 <field name="license_plate"/>
                 <field name="max_capacity"/>
                 <field name="current_weight"/>
-                <field name="capacity_usage_percent" widget="progressbar"/>
-                <field name="state" widget="badge"/>
+                <field name="capacity_usage_percent"/>
+                <field name="state"/>
                 <field name="driver_name"/>
                 <field name="assigned_order_count"/>
                 <field name="active"/>

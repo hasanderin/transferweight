@@ -48,7 +48,7 @@ class TransferVehicle(models.Model):
         ('in_transit', 'In Transit'),
         ('completed', 'Completed'),
         ('maintenance', 'Maintenance')
-    ], string='Status', default='available', required=True, tracking=True)
+    ], string='Status', default='available', required=True)
     
     driver_name = fields.Char(
         string='Driver Name',

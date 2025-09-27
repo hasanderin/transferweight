@@ -29,8 +29,8 @@
                     <group attrs="{'invisible': [('vehicle_id', '=', False)]}">
                         <field name="vehicle_capacity" readonly="1"/>
                         <field name="vehicle_current_weight" readonly="1"/>
-                        <field name="vehicle_capacity_usage" readonly="1" widget="progressbar"/>
-                        <field name="vehicle_state" readonly="1" widget="badge"/>
+                        <field name="vehicle_capacity_usage" readonly="1"/>
+                        <field name="vehicle_state" readonly="1"/>
                     </group>
                 </group>
             </xpath>
@@ -72,8 +72,8 @@
             <xpath expr="//field[@name='amount_total']" position="after">
                 <field name="total_weight"/>
                 <field name="vehicle_id"/>
-                <field name="vehicle_state" widget="badge"/>
-                <field name="is_delivered" widget="boolean_toggle"/>
+                <field name="vehicle_state"/>
+                <field name="is_delivered"/>
             </xpath>
         </field>
     </record>
@@ -128,9 +128,9 @@
                 <field name="date_order"/>
                 <field name="total_weight"/>
                 <field name="vehicle_id"/>
-                <field name="vehicle_capacity_usage" widget="progressbar"/>
-                <field name="vehicle_state" widget="badge"/>
-                <field name="is_delivered" widget="boolean_toggle"/>
+                <field name="vehicle_capacity_usage"/>
+                <field name="vehicle_state"/>
+                <field name="is_delivered"/>
                 <field name="delivery_date"/>
                 <field name="state"/>
             </tree>
