@@ -24,13 +24,13 @@ class TransferVehicle(models.Model):
     max_capacity = fields.Float(
         string='Maximum Capacity (kg)',
         required=True,
-        digits=(16, 2),
+        digits='Product Price',
         help='Maximum weight capacity of the vehicle in kilograms'
     )
     
     current_weight = fields.Float(
         string='Current Weight (kg)',
-        digits=(16, 2),
+        digits='Product Price',
         compute='_compute_current_weight',
         store=True,
         help='Current total weight of assigned orders'
@@ -38,7 +38,7 @@ class TransferVehicle(models.Model):
     
     capacity_usage_percent = fields.Float(
         string='Capacity Usage (%)',
-        digits=(5, 2),
+        digits='Product Price',
         compute='_compute_capacity_usage',
         help='Percentage of capacity currently in use'
     )

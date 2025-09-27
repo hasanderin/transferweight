@@ -11,7 +11,7 @@ class SaleOrderLine(models.Model):
         string='Product Weight (kg)',
         related='product_id.weight',
         store=True,
-        digits=(16, 2),
+        digits='Product Price',
         help='Weight of the product per unit'
     )
     
@@ -19,7 +19,7 @@ class SaleOrderLine(models.Model):
         string='Line Weight (kg)',
         compute='_compute_line_weight',
         store=True,
-        digits=(16, 2),
+        digits='Product Price',
         help='Total weight for this line (product weight × quantity)'
     )
 
@@ -37,7 +37,7 @@ class SaleOrder(models.Model):
         string='Total Weight (kg)',
         compute='_compute_total_weight',
         store=True,
-        digits=(16, 2),
+        digits='Product Price',
         help='Total weight of all order lines'
     )
     
@@ -51,21 +51,21 @@ class SaleOrder(models.Model):
     vehicle_capacity = fields.Float(
         string='Vehicle Capacity (kg)',
         related='vehicle_id.max_capacity',
-        digits=(16, 2),
+        digits='Product Price',
         help='Maximum capacity of the assigned vehicle'
     )
     
     vehicle_current_weight = fields.Float(
         string='Vehicle Current Weight (kg)',
         related='vehicle_id.current_weight',
-        digits=(16, 2),
+        digits='Product Price',
         help='Current weight of the assigned vehicle'
     )
     
     vehicle_capacity_usage = fields.Float(
         string='Vehicle Capacity Usage (%)',
         related='vehicle_id.capacity_usage_percent',
-        digits=(5, 2),
+        digits='Product Price',
         help='Current capacity usage percentage of the assigned vehicle'
     )
     

@@ -10,13 +10,13 @@
             <xpath expr="//header" position="inside">
                 <button name="action_assign_vehicle" string="Assign Vehicle" type="object" 
                         class="btn-primary" 
-                        invisible="state not in ['sale', 'done'] or vehicle_id != False"/>
+                        attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']), ('vehicle_id', '!=', False)]}"/>
                 <button name="action_unassign_vehicle" string="Unassign Vehicle" type="object" 
                         class="btn-secondary" 
-                        invisible="state not in ['sale', 'done'] or vehicle_id == False"/>
+                        attrs="{'invisible': ['|', ('state', 'not in', ['sale', 'done']), ('vehicle_id', '=', False)]}"/>
                 <button name="action_mark_delivered" string="Mark Delivered" type="object" 
                         class="btn-success" 
-                        invisible="state not in ['sale', 'done'] or vehicle_id == False or is_delivered == True"/>
+                        attrs="{'invisible': ['|', '|', ('state', 'not in', ['sale', 'done']), ('vehicle_id', '=', False), ('is_delivered', '=', True)]}"/>
             </xpath>
             
             <!-- Add weight and vehicle information after partner -->
@@ -26,7 +26,7 @@
                         <field name="total_weight" readonly="1"/>
                         <field name="vehicle_id" options="{'no_create': True}"/>
                     </group>
-                    <group invisible="vehicle_id == False">
+                    <group attrs="{'invisible': [('vehicle_id', '=', False)]}">
                         <field name="vehicle_capacity" readonly="1"/>
                         <field name="vehicle_current_weight" readonly="1"/>
                         <field name="vehicle_capacity_usage" readonly="1" widget="progressbar"/>
@@ -38,7 +38,7 @@
             <!-- Add delivery information -->
             <xpath expr="//field[@name='vehicle_state']" position="after">
                 <group name="delivery_info" string="Delivery Information" 
-                       invisible="vehicle_id == False">
+                       attrs="{'invisible': [('vehicle_id', '=', False)]}">
                     <group>
                         <field name="is_delivered"/>
                         <field name="delivery_date" readonly="1"/>

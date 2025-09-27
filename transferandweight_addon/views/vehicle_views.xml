@@ -8,13 +8,13 @@
             <form string="Vehicle">
                 <header>
                     <button name="action_set_available" string="Set Available" type="object" 
-                            class="btn-primary" invisible="state not in ['in_transit', 'completed', 'maintenance']"/>
+                            class="btn-primary" attrs="{'invisible': [('state', 'not in', ['in_transit', 'completed', 'maintenance'])]}"/>
                     <button name="action_set_in_transit" string="Set In Transit" type="object" 
-                            class="btn-primary" invisible="state != 'available'"/>
+                            class="btn-primary" attrs="{'invisible': [('state', '!=', 'available')]}"/>
                     <button name="action_set_completed" string="Set Completed" type="object" 
-                            class="btn-primary" invisible="state != 'in_transit'"/>
+                            class="btn-primary" attrs="{'invisible': [('state', '!=', 'in_transit')]}"/>
                     <button name="action_set_maintenance" string="Set Maintenance" type="object" 
-                            class="btn-secondary" invisible="state != 'available'"/>
+                            class="btn-secondary" attrs="{'invisible': [('state', '!=', 'available')]}"/>
                     <field name="state" widget="statusbar" statusbar_visible="available,in_transit,completed"/>
                 </header>
                 <sheet>
